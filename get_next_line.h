@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:03:28 by sbueno-s          #+#    #+#             */
-/*   Updated: 2023/11/06 14:46:40 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:29:52 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,15 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <strings.h>
 # include <unistd.h>
 
 # define READING_CHUNK 10
 char	*get_next_line(int fd);
+
+// **utils** 
+char	*ft_strjoin(char *s1, char *s2);
+size_t	ft_strlen(char *s);
+char	*ft_strchr(char *s, int c);
 
 #endif

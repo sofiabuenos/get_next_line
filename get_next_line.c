@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 15:08:08 by sbueno-s          #+#    #+#             */
-/*   Updated: 2023/11/06 15:32:08 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:32:09 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,32 @@
 char	*get_next_line(int fd)
 {
 	char	*buffer;
-	static ssize_t	bytes_read;
+	static char *warehouse;
+	ssize_t	bytes_read;
 
+	bytes_read = 1;
 	buffer = malloc(READING_CHUNK); // duvida 1
 	if (buffer == NULL)
 	{
 		printf("memory allocation issue");
 		return (NULL);
 	}
-	bytes_read = read(fd, buffer, READING_CHUNK -1);
-	if (bytes_read == -1)
+	while (bytes_read > 0 && )
 	{
-		printf("oops, can't read anything");
-		free (buffer);
-		return (NULL);
+		bytes_read = read(fd, buffer, READING_CHUNK -1);
+		if (bytes_read == -1)
+		{
+			printf("oops, can't read anything");
+			free (buffer);
+			return (NULL);
+		}
+		warehouse = ft_strjoin(buffer, warehouse);
+		// strchr para ver se ha \n
 	}
+
+
+	
+	bytes_read = read(fd, buffer, READING_CHUNK -1);
 	buffer[bytes_read] = '\0';
 	return (buffer);
 }
