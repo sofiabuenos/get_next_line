@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:42:33 by sbueno-s          #+#    #+#             */
-/*   Updated: 2023/11/07 12:59:10 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:13:02 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,24 @@ char	*ft_linetrim(char *warehouse, int c)
 	}
 	line[i] = '\0';
 	return (line);
+}
+
+char	*ft_static_clean(char *warehouse, char *linetoprint)
+{
+	char	*newhouse;
+	size_t	i;
+
+	i = 0;
+	while (warehouse[i] != '\n' && warehouse[i] != '\0')
+		i++;
+	newhouse = malloc(i + 1);
+	if (!newhouse)
+		return (NULL);
+	while ()
+	{
+		/* code */
+	}
+	
 }
 
 /* int	main(void)
