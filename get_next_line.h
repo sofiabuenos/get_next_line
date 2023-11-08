@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:03:28 by sbueno-s          #+#    #+#             */
-/*   Updated: 2023/11/08 12:50:56 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:09:40 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 # include <strings.h>
 # include <unistd.h>
 
-# define READING_CHUNK 10
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 10
+#endif
 char	*get_next_line(int fd);
 
 // **utils** 
