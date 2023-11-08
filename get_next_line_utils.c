@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:42:33 by sbueno-s          #+#    #+#             */
-/*   Updated: 2023/11/07 16:13:02 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:03:15 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,27 @@ char	*ft_linetrim(char *warehouse, int c)
 char	*ft_static_clean(char *warehouse, char *linetoprint)
 {
 	char	*newhouse;
+	size_t	len;
 	size_t	i;
+	size_t	j;
 
+	len = ft_strlen(warehouse) - ft_strlen(linetoprint);
 	i = 0;
-	while (warehouse[i] != '\n' && warehouse[i] != '\0')
-		i++;
-	newhouse = malloc(i + 1);
+	newhouse = malloc(len + 1);
 	if (!newhouse)
 		return (NULL);
-	while ()
+	while (warehouse[i] != '\n' && warehouse[i] != '\0')
+		i++;
+	j = 0;
+	i++;
+	while (warehouse[i]!= '\0')
 	{
-		/* code */
+		newhouse[j] = warehouse[i];
+		j++;
+		i++;
 	}
-	
+	newhouse[j] = '\0';
+	return (newhouse);
 }
 
 /* int	main(void)
@@ -119,4 +127,12 @@ char	*ft_static_clean(char *warehouse, char *linetoprint)
 	char	*line = ft_linetrim(warehouse, '\n');
 	printf("%s", line);
 	return (0);
+} */
+
+/* int	main(void)
+{
+	char	*warehouse = "Fly me to the moon\nLet me";
+	char	*linetoprint = "Fly me to the moon";
+	char	*newhouse = ft_static_clean(warehouse, linetoprint);
+	printf("%s", newhouse);
 } */

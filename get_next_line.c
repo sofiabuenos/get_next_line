@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 15:08:08 by sbueno-s          #+#    #+#             */
-/*   Updated: 2023/11/07 15:49:28 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:17:07 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	linetoprint = ft_linetrim(warehouse, '\n');
+	warehouse = ft_static_clean(warehouse, linetoprint);
 	free(buffer);
 	return (linetoprint);
 }
@@ -55,9 +56,11 @@ int	main(void)
 		printf("the file is not opening :/");
 		return (-1);
 	}
-	line = get_next_line(fd);
-	printf("%s", line);
-	free(line);
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s", line);
+		free(line);
+	}
 	close(fd);
 	return(0);
 }
