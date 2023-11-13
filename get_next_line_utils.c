@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:42:33 by sbueno-s          #+#    #+#             */
-/*   Updated: 2023/11/08 13:03:15 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:08:07 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ char	*ft_strchr(char *s, int c)
 		return (NULL);
 	while (s[i])
 	{
-		if (s[i] == (char)c)
+		if ((unsigned char)s[i] == (unsigned char)c)
 			return (&s[i]);
 		i++;
 	}
-	if ((char)c == '\0')
-		return (&s[i]);
+	if ((unsigned char)c == '\0')
+	 	return (&s[i]);
 	return (NULL);
 }
 size_t	ft_strlen(char *s)
@@ -34,6 +34,8 @@ size_t	ft_strlen(char *s)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i])
 		i++;
 	return (i);
@@ -50,7 +52,12 @@ char	*ft_strjoin(char *warehouse, char *buffer)
 	if (!joint)
 		return (NULL);
 	i = 0;
-	while (warehouse[i])
+	if (!warehouse)
+	{
+		warehouse = malloc(1);
+		warehouse[0] = '\0';
+	}
+	while (i < len[0])
 	{
 		joint[i] = warehouse[i];
 		i++;
@@ -60,24 +67,26 @@ char	*ft_strjoin(char *warehouse, char *buffer)
 		joint[i] = buffer[i - len[0]];
 		i++;
 	}
+	free(warehouse);
 	joint[i] = '\0';
 	return (joint);
 }
-char	*ft_linetrim(char *warehouse, int c)
+
+char	*ft_linetrim(char *warehouse)
 {
 	char	*contains_newline;
 	char	*line;
 	size_t	len[2];
 	size_t	i;
 
-	contains_newline = ft_strchr(warehouse, c);
+	contains_newline = ft_strchr(warehouse, '\n');
 	len[0] = ft_strlen(contains_newline);
 	len[1] = ft_strlen(warehouse);
-	line = malloc(len[1] - len[0] +1);
+	line = malloc(len[1] - len[0] + 1);
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (i < len[1] - len[0])
+	while (i <= len[1] - len[0])
 	{
 		line[i] = warehouse[i];
 		i++;
@@ -94,6 +103,11 @@ char	*ft_static_clean(char *warehouse, char *linetoprint)
 	size_t	j;
 
 	len = ft_strlen(warehouse) - ft_strlen(linetoprint);
+	if (len == 0)
+	{
+		free(warehouse);
+		return (NULL);
+	}
 	i = 0;
 	newhouse = malloc(len + 1);
 	if (!newhouse)
@@ -109,6 +123,7 @@ char	*ft_static_clean(char *warehouse, char *linetoprint)
 		i++;
 	}
 	newhouse[j] = '\0';
+	free(warehouse);
 	return (newhouse);
 }
 
