@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:42:33 by sbueno-s          #+#    #+#             */
-/*   Updated: 2023/11/13 13:08:07 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:00:27 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ char	*ft_strjoin(char *warehouse, char *buffer)
 	if (!joint)
 		return (NULL);
 	i = 0;
-	if (!warehouse)
+	/* if (!warehouse)
 	{
 		warehouse = malloc(1);
 		warehouse[0] = '\0';
-	}
+	} */
 	while (i < len[0])
 	{
 		joint[i] = warehouse[i];
@@ -72,28 +72,35 @@ char	*ft_strjoin(char *warehouse, char *buffer)
 	return (joint);
 }
 
-char	*ft_linetrim(char *warehouse)
+char	*ft_linetrim(char *aux)
 {
-	char	*contains_newline;
-	char	*line;
-	size_t	len[2];
-	size_t	i;
+	int		i;
+	char	*str;
 
-	contains_newline = ft_strchr(warehouse, '\n');
-	len[0] = ft_strlen(contains_newline);
-	len[1] = ft_strlen(warehouse);
-	line = malloc(len[1] - len[0] + 1);
-	if (!line)
+	i = 0;
+	if (!aux[i])
+		return (NULL);
+	while (aux[i] && aux[i] != '\n')
+		i++;
+	if (aux[i] == '\0')
+		str = (char *)malloc(sizeof(char) * (i + 1));
+	else
+		str = (char *)malloc(sizeof(char) * (i + 2));
+	if (!str)
 		return (NULL);
 	i = 0;
-	while (i <= len[1] - len[0])
+	while (aux[i] && aux[i] != '\n')
 	{
-		line[i] = warehouse[i];
+		str[i] = aux[i];
 		i++;
 	}
-	line[i] = '\0';
-	return (line);
+	if (aux[i] == '\n')
+		str[i++] = '\n';
+	str[i] = '\0';
+	return (str);
 }
+
+
 
 char	*ft_static_clean(char *warehouse, char *linetoprint)
 {
