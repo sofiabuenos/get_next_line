@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:23:15 by sbueno-s          #+#    #+#             */
-/*   Updated: 2023/11/13 17:05:13 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2023/11/15 14:55:57 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,7 @@ int	main(void)
 	{
 		printf("the file is not opening :/");
 		return (-1);
-	}
-	line = get_next_line(fd);
-	printf("%s", line);
-	free(line);
-	line = get_next_line(fd);
-	printf("%s", line);
-	while (line)
-	{
-		// printf("%s", line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	line = get_next_line(fd);
-	printf("%s", line);
-	free(line);
-	close(fd);
-
-
-	fd = open("text.txt", O_RDONLY);	
+	}	
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -47,5 +29,7 @@ int	main(void)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
+	close(fd);
 	return(0);
 }

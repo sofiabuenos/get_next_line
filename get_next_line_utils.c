@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:42:33 by sbueno-s          #+#    #+#             */
-/*   Updated: 2023/11/13 16:00:27 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2023/11/15 14:57:02 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,35 +72,33 @@ char	*ft_strjoin(char *warehouse, char *buffer)
 	return (joint);
 }
 
-char	*ft_linetrim(char *aux)
+char	*ft_linetrim(char *warehouse)
 {
 	int		i;
-	char	*str;
+	char	*line;
 
 	i = 0;
-	if (!aux[i])
+	if (!warehouse[i])
 		return (NULL);
-	while (aux[i] && aux[i] != '\n')
+	while (warehouse[i] && warehouse[i] != '\n')
 		i++;
-	if (aux[i] == '\0')
-		str = (char *)malloc(sizeof(char) * (i + 1));
+	if (warehouse[i] == '\0')
+		line = (char *)malloc(sizeof(char) * (i + 1));
 	else
-		str = (char *)malloc(sizeof(char) * (i + 2));
-	if (!str)
+		line = (char *)malloc(sizeof(char) * (i + 2));
+	if (!line)
 		return (NULL);
 	i = 0;
-	while (aux[i] && aux[i] != '\n')
+	while (warehouse[i] && warehouse[i] != '\n')
 	{
-		str[i] = aux[i];
+		line[i] = warehouse[i];
 		i++;
 	}
-	if (aux[i] == '\n')
-		str[i++] = '\n';
-	str[i] = '\0';
-	return (str);
+	if (warehouse[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
+	return (line);
 }
-
-
 
 char	*ft_static_clean(char *warehouse, char *linetoprint)
 {
