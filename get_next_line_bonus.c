@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 15:08:08 by sbueno-s          #+#    #+#             */
-/*   Updated: 2023/11/20 14:35:03 by sbueno-s         ###   ########.fr       */
+/*   Created: 2023/11/18 15:55:21 by sbueno-s          #+#    #+#             */
+/*   Updated: 2023/11/20 14:28:36 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_linetrim(char *warehouse)
 {
@@ -40,7 +40,7 @@ char	*ft_linetrim(char *warehouse)
 	return (line);
 }
 
-char	*ft_sc_copy(char *warehouse, char *newhouse, size_t start, size_t end)
+char	*ft_copychars(char *warehouse, char *newhouse, size_t start, size_t end)
 {
 	size_t	i;
 
@@ -102,18 +102,18 @@ char	*get_next_line(int fd)
 {
 	char		*buffer;
 	char		*line;
-	static char	*warehouse;
+	static char	*warehouse[MAX_FD];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
-	warehouse = read_cicle(warehouse, fd, buffer);
-	if (!warehouse)
+	warehouse[fd] = read_cicle(warehouse[fd], fd, buffer);
+	if (!warehouse[fd])
 		return (NULL);
-	line = ft_linetrim(warehouse);
-	warehouse = ft_static_clean(warehouse, line);
+	line = ft_linetrim(warehouse[fd]);
+	warehouse[fd] = ft_static_clean(warehouse[fd], line);
 	free(buffer);
 	return (line);
 }
