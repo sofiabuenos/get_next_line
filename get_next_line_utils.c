@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:42:33 by sbueno-s          #+#    #+#             */
-/*   Updated: 2023/11/20 14:31:36 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:46:31 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ char	*ft_strjoin(char *warehouse, char *buffer)
 	joint[i] = '\0';
 	return (joint);
 }
-
 
 /* int	main(void)
 {

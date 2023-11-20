@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 15:08:08 by sbueno-s          #+#    #+#             */
-/*   Updated: 2023/11/20 14:35:03 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:44:42 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*ft_static_clean(char *warehouse, char *linetoprint)
 	while (warehouse[i] != '\n' && warehouse[i] != '\0')
 		i++;
 	i++;
-	newhouse = ft_copy_chars(warehouse, newhouse, i, ft_strlen(warehouse));
+	newhouse = ft_sc_copy(warehouse, newhouse, i, ft_strlen(warehouse));
 	free(warehouse);
 	return (newhouse);
 }
